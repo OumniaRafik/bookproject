@@ -7,5 +7,6 @@ import com.book.bookproject.entity.Book;
 
 public interface BookService {
 	public List<Book> getAllBooks();
+
 	public List<Book> searchBooks(@RequestParam String q);
 }

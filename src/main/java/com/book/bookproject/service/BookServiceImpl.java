@@ -14,15 +14,15 @@ import com.book.bookproject.entity.Book;
 @Service
 public class BookServiceImpl implements BookService {
 
-	@Override	
+	@Override
 	public List<Book> getAllBooks() {
 		List<Book> books = new ArrayList<>();
 
-        books.add(new Book(1L, "The Great Gatsby", "F. Scott Fitzgerald", "Fiction"));
-        books.add(new Book(2L, "To Kill a Mockingbird", "Harper Lee", "Fiction"));
-        books.add(new Book(3L, "1984", "George Orwell", "Science Fiction"));
+		books.add(new Book(1L, "The Great Gatsby", "F. Scott Fitzgerald", "Fiction"));
+		books.add(new Book(2L, "To Kill a Mockingbird", "Harper Lee", "Fiction"));
+		books.add(new Book(3L, "1984", "George Orwell", "Science Fiction"));
 
-        return books;
+		return books;
 	}
 
 	@Override
@@ -31,13 +31,12 @@ public class BookServiceImpl implements BookService {
 
 		Book[] objects = restTemplate.getForObject("http://localhost:8090/books", Book[].class);
 		List<Book> books = Arrays.asList(objects);
-		
-        List<Book> filteredBooks = books.stream()
-                .filter(book -> book.getTitle().toLowerCase().contains(q.toLowerCase())
-                        || book.getAuthor().toLowerCase().contains(q.toLowerCase())
-                        || book.getCategory().toLowerCase().contains(q.toLowerCase()))
-                .sorted(Comparator.comparing(Book::getTitle))
-                .collect(Collectors.toList());
-        return filteredBooks;
+
+		List<Book> filteredBooks = books.stream()
+				.filter(book -> book.getTitle().toLowerCase().contains(q.toLowerCase())
+						|| book.getAuthor().toLowerCase().contains(q.toLowerCase())
+						|| book.getCategory().toLowerCase().contains(q.toLowerCase()))
+				.sorted(Comparator.comparing(Book::getTitle)).collect(Collectors.toList());
+		return filteredBooks;
 	}
 }

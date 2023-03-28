@@ -7,18 +7,18 @@ import javax.persistence.Id;
 
 @Entity
 public class Book {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String author;
 	private String category;
-	
+
 	public Book() {
 		super();
 	}
-	
+
 	public Book(Long id, String title, String author, String category) {
 		super();
 		this.id = id;

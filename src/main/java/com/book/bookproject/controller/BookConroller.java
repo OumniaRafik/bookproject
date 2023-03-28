@@ -12,17 +12,17 @@ import com.book.bookproject.service.BookService;
 
 @RestController
 public class BookConroller {
-	
+
 	@Autowired
 	private BookService bookService;
-	
+
 	@GetMapping("/books")
 	public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
-    }
-	    
+		return bookService.getAllBooks();
+	}
+
 	@GetMapping("/search")
-    public List<Book> searchBooks(@RequestParam String q) {
+	public List<Book> searchBooks(@RequestParam String q) {
 		return bookService.searchBooks(q);
-    }
+	}
 }
